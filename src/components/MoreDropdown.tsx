@@ -51,7 +51,7 @@ const MoreDropdown = () => {
       >
         {!showModeToggle && (
           <>
-            <DropdownMenuItem className="menuItem">
+            <DropdownMenuItem className="menuItem" onClick={() => (location.href = `/dashboard/edit-profile`)}>
               <Settings size={20} />
               <p>Settings</p>
             </DropdownMenuItem>
