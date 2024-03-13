@@ -6,8 +6,12 @@ First, run the development server:
 
 ```bash
 npx shadcn-ui@latest init
-
-
+npm install next-themes
+npm install next-auth
+npm i @auth/prisma-adapter (x)
+npm i @next-auth/prisma-adapter (o)
+npm i @prisma/client
+npm install prisma --save-dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.

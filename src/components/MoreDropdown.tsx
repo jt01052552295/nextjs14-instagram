@@ -3,8 +3,8 @@
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import { cn } from '@/lib/utils'
 import { Activity, Bookmark, ChevronLeft, LogOut, Menu, Moon, Settings, Sun } from 'lucide-react'
-// import { signOut } from "next-auth/react";
-// import { useTheme } from "next-themes";
+import { signOut } from 'next-auth/react'
+import { useTheme } from 'next-themes'
 import { useEffect, useRef, useState } from 'react'
 import { Button } from './ui/button'
 import { Label } from './ui/label'
@@ -14,8 +14,7 @@ const MoreDropdown = () => {
   const [showModeToggle, setShowModeToggle] = useState(false)
   const [open, setOpen] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
-
-  const [theme, setTheme] = useState('dark')
+  const { theme, setTheme } = useTheme()
 
   useEffect(() => {
     // Close the dropdown when the user clicks outside
@@ -70,7 +69,7 @@ const MoreDropdown = () => {
               <p>Switch appearance</p>
             </DropdownMenuItem>
 
-            <DropdownMenuItem className="menuItem" onClick={() => console.log('log out')}>
+            <DropdownMenuItem className="menuItem" onClick={() => signOut()}>
               <LogOut size={20} />
               <p>Log out</p>
             </DropdownMenuItem>
