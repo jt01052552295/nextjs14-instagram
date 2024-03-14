@@ -12,6 +12,8 @@ npm i @auth/prisma-adapter (x)
 npm i @next-auth/prisma-adapter (o)
 npm i @prisma/client
 npm install prisma --save-dev
+npm i sonner
+npm install uploadthing @uploadthing/react
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
