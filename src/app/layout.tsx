@@ -3,7 +3,7 @@ import './globals.css'
 import { inter } from './fonts'
 import { ThemeProvider } from '@/components/ThemeProvider'
 import AuthProvider from '@/components/AuthProvider'
-
+import { Toaster } from 'sonner'
 import { extractRouterConfig } from 'uploadthing/server'
 import { ourFileRouter } from './api/uploadthing/core'
 import { NextSSRPlugin } from '@uploadthing/react/next-ssr-plugin'
@@ -33,6 +33,7 @@ export default function RootLayout({
               routerConfig={extractRouterConfig(ourFileRouter)}
             />
             {children}
+            <Toaster richColors />
           </AuthProvider>
         </ThemeProvider>
       </body>

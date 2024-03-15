@@ -14,6 +14,7 @@ npm i @prisma/client
 npm install prisma --save-dev
 npm i sonner
 npm install uploadthing @uploadthing/react
+npm i react-timeago
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
