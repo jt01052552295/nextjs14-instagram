@@ -205,3 +205,116 @@ export async function bookmarkPost(value: FormDataEntryValue | null) {
     }
   }
 }
+
+export async function createComment(values: z.infer<typeof CreateComment>) {
+  const userId = await getUserId()
+
+  const validatedFields = CreateComment.safeParse(values)
+
+  if (!validatedFields.success) {
+    return {
+      errors: validatedFields.error.flatten().fieldErrors,
+      message: 'Missing Fields. Failed to Create Comment.',
+    }
+  }
+
+  const { postId, body } = validatedFields.data
+
+  const post = await prisma.post.findUnique({
+    where: {
+      id: postId,
+    },
+  })
+
+  if (!post) {
+    throw new Error('Post not found')
+  }
+
+  try {
+    await prisma.comment.create({
+      data: {
+        body,
+        postId,
+        userId,
+      },
+    })
+    revalidatePath('/dashboard')
+    return { message: 'Created Comment.' }
+  } catch (error) {
+    return { message: 'Database Error: Failed to Create Comment.' }
+  }
+}
+
+export async function deleteComment(formData: FormData) {
+  const userId = await getUserId()
+
+  const { id } = DeleteComment.parse({
+    id: formData.get('id'),
+  })
+
+  const comment = await prisma.comment.findUnique({
+    where: {
+      id,
+      userId,
+    },
+  })
+
+  if (!comment) {
+    throw new Error('Comment not found')
+  }
+
+  try {
+    await prisma.comment.delete({
+      where: {
+        id,
+      },
+    })
+    revalidatePath('/dashboard')
+    return { message: 'Deleted Comment.' }
+  } catch (error) {
+    return { message: 'Database Error: Failed to Delete Comment.' }
+  }
+}
+
+export async function updatePost(values: z.infer<typeof UpdatePost>) {
+  const userId = await getUserId()
+
+  const validatedFields = UpdatePost.safeParse(values)
+
+  if (!validatedFields.success) {
+    return {
+      errors: validatedFields.error.flatten().fieldErrors,
+      message: 'Missing Fields. Failed to Update Post.',
+    }
+  }
+
+  const { id, fileUrl, caption } = validatedFields.data
+
+  const post = await prisma.post.findUnique({
+    where: {
+      id,
+      userId,
+    },
+  })
+
+  if (!post) {
+    throw new Error('Post not found')
+  }
+
+  try {
+    await prisma.post.update({
+      where: {
+        id,
+      },
+      data: {
+        fileUrl,
+        caption,
+      },
+    })
+  } catch (error) {
+    return { message: 'Database Error: Failed to Update Post.' }
+  }
+
+  revalidatePath('/dashboard')
+  redirect('/dashboard')
+}
