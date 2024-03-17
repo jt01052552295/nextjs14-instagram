@@ -13,23 +13,27 @@ const links = [
     href: '/dashboard/search',
     icon: Search,
     hideOnMobile: true,
+    disabled: true,
   },
-  { name: 'Explore', href: '/dashboard/explore', icon: Compass },
+  { name: 'Explore', href: '/dashboard/explore', icon: Compass, disabled: true },
   {
     name: 'Reels',
     href: '/dashboard/reels',
     icon: Clapperboard,
+    disabled: true,
   },
   {
     name: 'Messages',
     href: '/dashboard/messages',
     icon: MessageCircle,
+    disabled: true,
   },
   {
     name: 'Notifications',
     href: '/dashboard/notifications',
     icon: Heart,
     hideOnMobile: true,
+    disabled: true,
   },
   {
     name: 'Create',
@@ -50,14 +54,14 @@ const NavLinks = () => {
         return (
           <Link
             key={link.name}
-            href={link.href}
+            href={link.disabled ? '#' : link.href}
             className={buttonVariants({
               variant: isActive ? 'secondary' : 'ghost',
-              className: cn('navLink', { 'hidden md:flex': link.hideOnMobile }),
+              className: cn('navLink ', { 'hidden md:flex': link.hideOnMobile }, { 'opacity-50 cursor-not-allowed': link.disabled }),
               size: 'lg',
             })}
           >
-            <LinkIcon className="w-6" />
+            <LinkIcon className="w-6 " />
             <p
               className={`${cn('hidden lg:block', {
                 'font-extrabold': isActive,

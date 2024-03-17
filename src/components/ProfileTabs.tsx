@@ -13,21 +13,25 @@ const profileTabs = [
     title: 'Posts',
     href: '',
     Icon: Grid3X3,
+    disabled: false,
   },
   {
     title: 'Reels',
     href: 'reels',
     Icon: Clapperboard,
+    disabled: true,
   },
   {
     title: 'Saved',
     href: 'saved',
     Icon: Bookmark,
+    disabled: false,
   },
   {
     title: 'Tagged',
     href: 'tagged',
     Icon: Contact,
+    disabled: true,
   },
 ]
 

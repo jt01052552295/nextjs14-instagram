@@ -52,7 +52,7 @@ async function ProfileLayout({ children, params: { username } }: Props) {
               <p className="font-semibold text-xl">{profile.username}</p>
               {isCurrentUser ? (
                 <>
-                  <Button size={'icon'} variant={'ghost'} className="md:order-last">
+                  <Button size={'icon'} variant={'ghost'} className="md:order-last" disabled>
                     <Settings />
                   </Button>
                   <Link
@@ -65,17 +65,17 @@ async function ProfileLayout({ children, params: { username } }: Props) {
                   >
                     Edit profile
                   </Link>
-                  <Button variant={'secondary'} className="font-bold" size={'sm'}>
+                  <Button variant={'secondary'} className="font-bold" size={'sm'} disabled>
                     View archive
                   </Button>
                 </>
               ) : (
                 <>
-                  <Button size={'icon'} variant={'ghost'} className="md:order-last">
+                  <Button size={'icon'} variant={'ghost'} className="md:order-last" disabled>
                     <MoreHorizontal />
                   </Button>
                   <FollowButton isFollowing={isFollowing} profileId={profile.id} />
-                  <Button variant={'secondary'} className="font-bold" size={'sm'}>
+                  <Button variant={'secondary'} className="font-bold" size={'sm'} disabled>
                     Message
                   </Button>
                 </>

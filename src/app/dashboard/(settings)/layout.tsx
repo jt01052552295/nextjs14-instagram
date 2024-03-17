@@ -3,12 +3,12 @@ import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { cn } from '@/lib/utils'
 
 const tabs = [
-  { title: 'Edit profile', value: 'edit-profile' },
-  { title: 'Professional account', value: 'professional-account' },
-  { title: 'Notifications', value: 'notifications' },
-  { title: 'Privacy and security', value: 'privacy-and-security' },
-  { title: 'Login activity', value: 'login-activity' },
-  { title: 'Emails from Instagram', value: 'emails-from-instagram' },
+  { title: 'Edit profile', value: 'edit-profile', disabled: false },
+  { title: 'Professional account', value: 'professional-account', disabled: true },
+  { title: 'Notifications', value: 'notifications', disabled: true },
+  { title: 'Privacy and security', value: 'privacy-and-security', disabled: true },
+  { title: 'Login activity', value: 'login-activity', disabled: true },
+  { title: 'Emails from Instagram', value: 'emails-from-instagram', disabled: true },
 ]
 
 function SettingsLayout({ children }: { children: React.ReactNode }) {
@@ -27,7 +27,8 @@ function SettingsLayout({ children }: { children: React.ReactNode }) {
               value={tab.value}
               className={cn(
                 buttonVariants({ variant: 'ghost', size: 'lg' }),
-                'data-[state=active]:bg-zinc-100 dark:data-[state=active]:bg-neutral-800 dark:hover:bg-neutral-900 w-full justify-start !px-3'
+                'data-[state=active]:bg-zinc-100 dark:data-[state=active]:bg-neutral-800 dark:hover:bg-neutral-900 w-full justify-start !px-3',
+                { 'opacity-50 cursor-not-allowed': tab.disabled }
               )}
             >
               {tab.title}

@@ -43,7 +43,7 @@ const PostOptions = ({ post, userId, className }: Props) => {
         )}
 
         <form action="" className="postOption border-0">
-          <button className="w-full p-3">Hide like count</button>
+          <button className="w-full p-3 opacity-50 cursor-not-allowed">Hide like count</button>
         </form>
       </DialogContent>
     </Dialog>
