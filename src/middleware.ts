@@ -7,7 +7,6 @@ export default withAuth({
       const isOnDashboard = req.nextUrl.pathname.startsWith('/dashboard')
 
       if (isOnDashboard) {
-        console.log('middleware - ', isLoggedIn)
         if (isLoggedIn) return true
         return false // Redirect unauthenticated users to login page
       }
